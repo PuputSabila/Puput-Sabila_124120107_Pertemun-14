@@ -1,0 +1,22 @@
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Data magnetik
+data = np.random.randn(60, 80) * 100
+
+# Sidebar
+save_plot = st.sidebar.checkbox("Simpan Gambar")
+
+# Plot
+fig, ax = plt.subplots()
+im = ax.imshow(data, cmap="seismic")
+plt.colorbar(im, ax=ax)
+ax.set_title("Peta Anomali Magnetik")
+
+st.pyplot(fig)
+
+# Simpan file
+if save_plot:
+    fig.savefig("peta_anomali_magnetik.png", dpi=300, bbox_inches="tight")
+    st.success("Gambar berhasil disimpan!")
